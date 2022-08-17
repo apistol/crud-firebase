@@ -9,7 +9,7 @@ exports.getUsers = async (req, res) => {
 
 exports.createUser = async (req, res) => {
     await db.collection('users').add({
-        name:req.body.name,
+        password:req.body.name,
         email:req.body.email,
     })
 
