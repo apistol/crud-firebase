@@ -8,8 +8,8 @@ exports.getUsers = async (req, res) => {
 }
 
 exports.createUser = async (req, res) => {
-    await db.collection('users').add({
-        name:req.body.name,
+     await db.collection('users').add({
+        name:req.body.password,
         email:req.body.email,
     })
 
