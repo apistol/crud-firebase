@@ -16,7 +16,7 @@ function App() {
 
   return (
     <div>
-      Test manea
+      Test manea e fraier
         {users.map( user => <p key={user.email}>{user.name} | {user.email}</p>)}
     </div>
   );
