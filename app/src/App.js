@@ -16,7 +16,7 @@ function App() {
 
   return (
     <div>
-      Test pistl 4
+      Test Manea
         {users.map( user => <p key={user.email}>{user.name} | {user.email}</p>)}
     </div>
   );
