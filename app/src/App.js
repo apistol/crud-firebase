@@ -18,7 +18,6 @@ function App() {
   const [password, setPassword] = useState(null)
 
   const handleChange = () => {
-    debugger
     axios.post("http://localhost:5000/ecommerce-2ebae/us-central1/api/users", {email, password})
     .then((res) => {
       console.log(res)

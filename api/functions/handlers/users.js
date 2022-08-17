@@ -9,8 +9,8 @@ exports.getUsers = async (req, res) => {
 
 exports.createUser = async (req, res) => {
     await db.collection('users').add({
-        name:req.body.name,
         email:req.body.email,
+        password:req.body.password,
     })
 
     return res.status(200).send("Success");
