@@ -7,23 +7,30 @@ import { Paper } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import Snackbar from '@mui/material/Snackbar';
 
-import { email, password } from "react";
 
 function App() {
 
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [open, setOpen] = useState(false);
+  const [message, setMessage] = useState("")
+  
 
   const handleSubmit = () => {
+   
     axios
       .post("http://localhost:5000/ecommerce-2ebae/us-central1/api", { email, password })
       .then((res) => {
-        console.log(res)
+        setOpen(true)
+        setMessage("Success")
       })
       .catch((err) => {
         console.error(err)
+        setOpen(true)
+        setMessage("Esec")
       })
 
 
@@ -60,7 +67,12 @@ function App() {
           </Paper>
         </Grid>
       </Grid>
-
+      <Snackbar
+        open={open}
+        autoHideDuration={6000}
+        onClose={() => setOpen(false)}
+        message={message}
+      />
 
 
     </div>
