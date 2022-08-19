@@ -19,8 +19,8 @@ import AppContext from "../context/app-context"
 export default function Login() {
 
 
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+    const [email, setEmail] = useState("gun")
+    const [password, setPassword] = useState("123456")
     const [open, setOpen] = useState(false);
     const [message, setMessage] = useState("")
     const enterPressed = useKeyPress()
@@ -35,8 +35,11 @@ export default function Login() {
         .then((res) => {
             setState({
                 isLoggedIn: true,
-                user: res.data.result,
-                socials: []
+                user: { 
+                    userId : res.data.result.userId,
+                    email : res.data.result.email
+                },
+                socials: [...res.data.result.socials]
             })
           setOpen(true)
           setMessage("Succes")
@@ -96,7 +99,7 @@ export default function Login() {
                         <br />
                         <TextField type="password" value={password} onChange={(e) => setPassword(e.target.value)} id="outlined-basic" label="Password" variant="outlined" />
                         <br />
-                        <Button onClick={handleSubmit} style={{ width: "200px", margin: "auto" }} variant="contained">Contained</Button>
+                        <Button onClick={handleSubmit} style={{ width: "200px", margin: "auto" }} variant="contained">Login</Button>
 
                         {/* <ImageUploading
                             value={images}

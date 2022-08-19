@@ -15,6 +15,7 @@ import Dashboard from "./components/Dashboard";
 import Register from "./components/Register";
 
 import AppContext from "./context/app-context"
+import Profile from "./components/Profile";
 
 axios.defaults.baseURL = "http://localhost:5000/ecommerce-2ebae/us-central1/api"
 
@@ -40,6 +41,7 @@ function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/profile" element={<Profile />} />
 
         </Routes>
       </BrowserRouter>

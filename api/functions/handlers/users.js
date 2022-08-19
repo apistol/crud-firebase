@@ -35,7 +35,7 @@ exports.addAvatarImage = async (req, res) => {
             const imageExtension = filename.filename.split(".")[filename.filename.split(".").length - 1];
             imageFileName = `${Math.round(Math.random() * 1000000000)}.${imageExtension}`;
             const filePath = path.join(os.tmpdir(), imageFileName);
-            imageToBeUploaded = { filePath, mimetype:filename.mimetype };
+            imageToBeUploaded = { filePath, mimetype: filename.mimetype };
             file.pipe(fs.createWriteStream(filePath));
         });
 
@@ -53,7 +53,7 @@ exports.addAvatarImage = async (req, res) => {
 
             imageUrl = `https://firebasestorage.googleapis.com/v0/b/ecommerce-2ebae.appspot.com/o/${imageFileName}?alt=media`;
 
-            return res.status(200).json({image: imageUrl})
+            return res.status(200).json({ image: imageUrl })
         })
 
     } catch (err) {
@@ -65,11 +65,11 @@ exports.addAvatarImage = async (req, res) => {
 
 
 exports.login = async (req, res) => {
-    const email = req.body.email ;
-    const password = req.body.password ;
-    
-    if(!password){
-      return res.status(300).send("Empty password")
+    const email = req.body.email;
+    const password = req.body.password;
+
+    if (!password) {
+        return res.status(300).send("Empty password")
     }
 
     // verifica daca exista userul cu emailul respectiv si parola din db e egala cu ce am trimis
@@ -77,10 +77,21 @@ exports.login = async (req, res) => {
     const userData = userFBDoc.docs[0].data()
     const userId = userFBDoc.docs[0].id
 
-    if( userData.password !== password){
+    if (userData.password !== password) {
         return res.status(300).send("Wrong password")
     }
 
     // returneaza userul plus id-ul userului
-    return res.status(200).json({ result: {...userData, userId}})
+    return res.status(200).json({ result: { ...userData, userId } })
+}
+
+exports.addSocial = async (req, res) => {
+    const userId = req.params.id;
+
+    const userFbData = await db.doc(`/users/${userId}`).get()
+    const userData = await userFbData.data()
+    let newUserData = userData;
+    newUserData.socials.push(req.body)
+    await db.doc(`/users/${userId}`).set(newUserData)
+    res.status(200).send("Succes")
 }
