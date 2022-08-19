@@ -115,9 +115,33 @@ body {
 
 .svGrp_user{
     background: #202225;
-    margin-bottom: 54px;
+    margin-bottom: 50px;
 }
 
+.svGrp_user > div:first-child span{
+    background: #36393f;
+    width: 28px;
+    height: 5px;
+    display: flex;
+    border-radius: 100px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    position: relative;
+    padding: 12px 0px;    
+}
 
+.svGrp_user > div:first-child{
+    display: flex;
+    align-items: center;
+    
+}
 
+.svGrp_user > div:first-child span img{
+    width: 20px;
 
+}
+
+.svGrp_user > div > div p{
+    margin: 0px;
+}
