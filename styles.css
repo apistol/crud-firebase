@@ -74,6 +74,7 @@ body {
     font-weight: bolder;
     border-bottom: 2px solid rgba(0, 0, 0, .3);
 }
+
 .svGrp_title:hover {
     background: #828383;
 }
@@ -86,39 +87,42 @@ body {
     flex-direction: column;
 }
 
-.svGrp_title > div {
+.svGrp_title>div {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.svGrp_subGroup > div:first-child img{
+.svGrp_subGroup>div:first-child img {
     width: 20px;
 }
 
-.svGrp_subGroup > div:last-child img{
+.svGrp_subGroup>div:last-child img {
     width: 15px;
 }
 
-.svGrp_subGroup{
+.svGrp_subGroup {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.svGrp_subGroup > div{
+.svGrp_subGroup>div {
     display: flex;
     color: #FFF;
     padding: 5px 15px;
 }
 
 
-.svGrp_user{
+.svGrp_user {
     background: #202225;
     margin-bottom: 50px;
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
 }
 
-.svGrp_user > div:first-child span{
+.svGrp_user>div:first-child span {
     background: #36393f;
     width: 28px;
     height: 5px;
@@ -126,22 +130,59 @@ body {
     border-radius: 100px;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
     position: relative;
-    padding: 12px 0px;    
+    padding: 12px 0px;
 }
 
-.svGrp_user > div:first-child{
+.svGrp_user>div:first-child {
     display: flex;
     align-items: center;
+    padding: 0px 5px;
     
 }
 
-.svGrp_user > div:first-child span img{
+.svGrp_user>div:first-child span img {
     width: 20px;
+
 
 }
 
-.svGrp_user > div > div p{
+.svGrp_user>div>div p {
     margin: 0px;
+    color: #FFF;
+    margin-left: 8px;
+}
+
+.svGrp_user > div:first-child span a{
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 7px;
+    height: 7px;
+    background-color: green;
+    border-radius: 100%;
+}
+
+.svGrp_user>div:first-child:hover{
+    background: #424242;
+    border-radius: 5px;
+}
+
+.svGrp_user > div:last-child{
+    align-items: center;
+    display: flex;
+}
+
+.svGrp_user > div:last-child img{
+    margin: 0px 3px;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.svGrp_user > div:last-child img:hover{
+    background: #424242;
+}
+
+.grpCon{
+    background-color: #424141;
 }
