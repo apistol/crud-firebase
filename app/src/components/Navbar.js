@@ -29,7 +29,7 @@ export default function Navbar() {
             {state.isLoggedIn && <Link to="/">Dashboard</Link>}
             {!state.isLoggedIn && <Link to="/login">Login </Link>}
             {!state.isLoggedIn && <Link to="/register">Register </Link>}
-            {state.isLoggedIn && <div className="profileBtn"><Link to="/login">Profile <Avatar sx={{ bgcolor: "#eabf17" }}>AP</Avatar></Link></div>}
+            {state.isLoggedIn && <div className="profileBtn"><Link to="/profile">Profile <Avatar sx={{ bgcolor: "#eabf17" }}>AP</Avatar></Link></div>}
             {state.isLoggedIn && <a onClick={handleLogout}>Log Out</a>}
         </nav>
     </div>

@@ -27,7 +27,8 @@ function App() {
       name:"",
       email:""
     },
-    socials: []
+    socials: [],
+    openDialog:false
   })
 
 

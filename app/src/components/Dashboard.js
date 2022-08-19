@@ -11,12 +11,10 @@ import Select from '@mui/material/Select';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import axios from "axios";
-import {Link} from "react-router-dom";
 
 export default function Dashboard() {
 
   const [appState, setAppState] = useContext(AppContext)
-  const [open, setOpen] = useState(false);
 
   return (
     <div>
@@ -25,26 +23,24 @@ export default function Dashboard() {
       <div style={{ display: "flex", justifyContent: "center" }}>
         <Button
           variant='outlined'
-          onClick={() => setOpen(true)}
+          onClick={() => setAppState({ ...appState, openDialog: true })}
           className="addSocialCard"
         >
           <AddIcon />
         </Button>
       </div>
 
-      <AddSocialDialog
-        open={open}
-        handleClose={() => setOpen(false)}
-      />
+      <AddSocialDialog />
     </div>
   )
 }
 
 
-const AddSocialDialog = ({ open, handleClose, userId }) => {
+const AddSocialDialog = () => {
 
   const [socialName, setSocialName] = useState('');
   const [url, setUrl] = useState('');
+
   const [appState, setAppState] = useContext(AppContext)
 
   const handleSubmit = () => {
@@ -61,7 +57,7 @@ const AddSocialDialog = ({ open, handleClose, userId }) => {
   }
 
   return (
-    <Dialog onClose={handleClose} open={open}>
+    <Dialog onClose={() => setAppState({ ...appState, openDialog: false })} open={appState.openDialog}>
       <DialogTitle>Add social</DialogTitle>
       <div style={{ padding: "30px", width: 400 }}>
         <FormControl>
@@ -82,7 +78,7 @@ const AddSocialDialog = ({ open, handleClose, userId }) => {
         <TextField value={url} onChange={(e) => setUrl(e.target.value)} style={{ width: "400px", marginTop: 30 }} label="Url" variant="outlined" />
 
         <Button style={{ marginTop: 30 }} variant="contained" onClick={handleSubmit}>Submit</Button>
-        <Button style={{ marginTop: 30, marginLeft: 20 }} variant="contained" onClick={handleClose}>Cancel</Button>
+        <Button style={{ marginTop: 30, marginLeft: 20 }} variant="contained" onClick={() => setAppState({ ...appState, openDialog: false })}>Cancel</Button>
 
       </div>
     </Dialog>
@@ -95,11 +91,19 @@ const ListSocials = () => {
   const [appState, setAppState] = useContext(AppContext)
 
   return <div>
-    {appState.socials.map(social => (<Paper key={social.url} elevation={3} style={{ margin: 20, padding: 10 }}>
-      <a target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", color: "#000" }} href={social.url}>{social.socialName}</a>
-      {/* <span onClick={ () => window.location.host = social.url}>{social.socialName}</span> */}
-      {/* <Link to={{ pathname: social.url }} target="_blank" >{social.socialName}</Link> */}
-
-    </Paper>))}
+    {appState.socials.map(social => (
+      <Paper
+        key={social.url}
+        elevation={3}
+        style={{ margin: 20, padding: 10 }}>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ textDecoration: "none", color: "#000" }}
+          href={social.url}>
+          {social.socialName}
+        </a>
+      </Paper>
+    ))}
   </div>
 }
