@@ -169,6 +169,7 @@ body {
 }
 
 .svGrp_user > div:last-child{
+
     align-items: center;
     display: flex;
 }
@@ -185,4 +186,49 @@ body {
 
 .grpCon{
     background-color: #424141;
+}
+
+.grpCon_title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 15px 15px 3px;
+    background: #424141;
+    color: #FFF;
+    font-weight: bolder;
+    border-bottom: 2px solid rgba(0, 0, 0, .3);
+}
+.grpCon_title > div:first-child img{
+    width: 25px;
+    padding-right: 7px;
+}
+
+.grpCon_title > div:first-child{
+    display: flex;
+    align-items: center;
+}
+
+.grpCon_title > div:last-child{
+    width: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.grpCon_TypeBar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.grpCon_TypeBar > div:first-child img{
+    width: 20px;
+}
+
+.grpCon_TypeBar > div:last-child img{
+    width: 20px;
+}
+
+.grpCon_TypeBar input{
+    width: 100%;
 }
