@@ -243,6 +243,7 @@ body {
     border: none;
     background: none;
     padding-right: 75px;
+    color: #FFF;
 }
 
 .grpCon_TypeBar input:focus {
@@ -272,6 +273,7 @@ body {
     width: 80px;
     border: none;
     background: none;
+    color: #FFF
 }
 
 .grpUs_SearchBar input:focus {
@@ -301,14 +303,20 @@ body {
     align-items: center;
     width: 100%;
     padding: 3px 20px 3px 3px;
-    
+    margin-bottom: 0px;
 }
 
-.grpUs_Users > div:first-child p{
+.grpUs_Users>div:first-child p {
     color: #FFF;
     padding-left: 10px;
     margin-bottom: 5px;
 }
 
-.online_user:hover{
+.online_user>div:first-child {
+    width: 95%;
+    padding: 5px;
+}
+
+.Offline{
+    opacity: .5;
 }

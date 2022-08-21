@@ -8,6 +8,7 @@
 <body>
 
     <div class="svSB">
+
         <span class="server">
             <img src="./assets/logoDiscord.svg" alt="Logo Discord" />
             <span class="messages"><a>1</a></span>
@@ -20,8 +21,66 @@
             <img src="./assets/logoDiscord.svg" alt="Logo Discord" />
             <span class="messages"><a>9</a></span>
         </span>
+        <span class="server">
+            <img src="./assets/logoDiscord.svg" alt="Logo Discord" />
+            <span class="messages"><a>1</a></span>
+        </span>
+        <span class="server">
+            <img src="./assets/logoDiscord.svg" alt="Logo Discord" />
+            <span class="messages"><a>1</a></span>
+        </span>
+        <span class="server">
+            <img src="./assets/logoDiscord.svg" alt="Logo Discord" />
+            <span class="messages"><a>1</a></span>
+        </span>
+        <span class="server">
+            <img src="./assets/logoDiscord.svg" alt="Logo Discord" />
+            <span class="messages"><a>1</a></span>
+        </span>
+        <span class="server">
+            <img src="./assets/logoDiscord.svg" alt="Logo Discord" />
+            <span class="messages"><a>1</a></span>
+        </span>
+        <span class="server">
+            <img src="./assets/logoDiscord.svg" alt="Logo Discord" />
+            <span class="messages"><a>1</a></span>
+        </span>
+        <span class="server">
+            <img src="./assets/logoDiscord.svg" alt="Logo Discord" />
+            <span class="messages"><a>1</a></span>
+        </span>
+        <span class="server">
+            <img src="./assets/logoDiscord.svg" alt="Logo Discord" />
+            <span class="messages"><a>1</a></span>
+        </span>
+        <span class="server">
+            <img src="./assets/logoDiscord.svg" alt="Logo Discord" />
+            <span class="messages"><a>1</a></span>
+        </span>
+        <span class="server">
+            <img src="./assets/logoDiscord.svg" alt="Logo Discord" />
+            <span class="messages"><a>1</a></span>
+        </span>
+        <span class="server">
+            <img src="./assets/logoDiscord.svg" alt="Logo Discord" />
+            <span class="messages"><a>1</a></span>
+        </span>
+        <span class="server">
+            <img src="./assets/logoDiscord.svg" alt="Logo Discord" />
+            <span class="messages"><a>1</a></span>
+        </span>
+        <span class="server">
+            <img src="./assets/logoDiscord.svg" alt="Logo Discord" />
+            <span class="messages"><a>1</a></span>
+        </span>
+        <span class="server">
+            <img src="./assets/logoDiscord.svg" alt="Logo Discord" />
+            <span class="messages"><a>5</a></span>
+
+
 
     </div>
+
     <div class="svGrp">
         <div class="svGrp_title" style="padding-left: 15px;">
             <span>FrontEnd Juveniles</span>
@@ -128,20 +187,131 @@
                     <div>
                         <span>
                             <img src="./assets/logoDiscord.svg" />
-                            <a></a>
                         </span>
                         <div>
                             <p>Razvan</p>
                         </div>
                     </div>
-                    
+
+                </div>
+                <p>Offline</p>
+                <div class="svGrp_user online_user Offline">
+                    <div>
+                        <span>
+                            <img src="./assets/logoDiscord.svg" />
+                        </span>
+                        <div>
+                            <p>Pistol</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="svGrp_user online_user Offline">
+                    <div>
+                        <span>
+                            <img src="./assets/logoDiscord.svg" />
+                        </span>
+                        <div>
+                            <p>Linux</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="svGrp_user online_user Offline">
+                    <div>
+                        <span>
+                            <img src="./assets/logoDiscord.svg" />
+                        </span>
+                        <div>
+                            <p>Vobert</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="svGrp_user online_user Offline">
+                    <div>
+                        <span>
+                            <img src="./assets/logoDiscord.svg" />
+                        </span>
+                        <div>
+                            <p>Yopotro</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="svGrp_user online_user Offline">
+                    <div>
+                        <span>
+                            <img src="./assets/logoDiscord.svg" />
+                        </span>
+                        <div>
+                            <p>Weck</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div></div>
         </div>
     </div>
 
+    <script>
 
+        let pistolObject = {
+            firstName: "Alex",
+            lastName: "Pistol",
+            age: 27,
+            student: false,
+            girlFriends: [],
+            hasAGirlFriend: function () {
+                if (this.girlFriends.length > 0) {
+                    return console.log(true)
+                } else {
+                    return console.log(false)
+                }
+            }
+        }
+
+        function getCartValue(cartItemsArray) {
+            let totalValue = 0;
+            let stock = ["cafea", "gogoasa", "biscuiti"]
+            // for (let i = 0; i < cartItemsArray.length; i++) {
+            //     if (cartItemsArray[i] === "cafea") {
+            //         totalValue = totalValue + 6.5
+            //     } else if (cartItemsArray[i] === "gogoasa") {
+            //         totalValue = totalValue + 10
+            //     } else if (cartItemsArray[i] === "biscuiti"){
+            //         totalValue = totalValue + 7
+            //     } else{
+            //         console.error("Produsul nu exista in stock")
+            //     }
+            // }
+
+            cartItemsArray.forEach((item) => {
+                if (item === "cafea") totalValue += 6.5
+                if (item === "gogoasa") totalValue += 10
+                if (item === "biscuiti") totalValue += 7
+                if (!stock.includes(item)) console.error("Produsul nu exista in stock")
+            })
+
+            console.log(totalValue)
+            return totalValue
+        }
+        //      0    ,     1     ,    2
+        getCartValue(["cafea", "gogoasa", "biscuiti", "franzela"])
+
+
+        let ages = [
+            {name:"Marian", age:2},
+            {name:"Doru", age:4},
+            {name:"Sabrina", age:8},
+            {name:"Teo", age:10},
+            {name:"Duta", age:15},
+            {name:"Gigi", age:18},
+            {name:"Flori", age:19},
+            {name:"Mirel", age:19},
+            {name:"Anghel", age:20},
+            {name:"Tudor", age:24}
+        ]
+
+
+
+
+    </script>
 
 
 
