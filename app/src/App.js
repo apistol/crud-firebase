@@ -4,7 +4,7 @@ import Login from "./components/Login"
 import Dashboard from "./components/Dashboard"
 import Register from "./components/Register"
 import Navbar from './components/Navbar';
-import Users from "./components/Users"
+import Home from "./components/Home"
 
 import AppContext from "./context/app-context"
 
@@ -26,7 +26,8 @@ import {
 // import CloseIcon from '@mui/icons-material/Close';
 
 
-axios.defaults.baseURL="http://localhost:5000/ecommerce-2ebae/us-central1/api"
+// axios.defaults.baseURL="http://localhost:5000/ecommerce-2ebae/us-central1/api"
+axios.defaults.baseURL="https://us-central1-ecommerce-2ebae.cloudfunctions.net/api"
 
 function App() {
 
@@ -50,7 +51,7 @@ function App() {
             <Route path="/dashboard" element={<Dashboard/>}/>
             {!state.isLoggedIn && <Route path="/login" element={<Login/>}/>}
             <Route path="/register" element={<Register/>}/>
-            <Route path="/users" element={<Users/>}/>
+            <Route path="/users" element={<Home/>}/>
           </Routes>
         </BrowserRouter>
       </AppContext.Provider>

@@ -1,5 +1,6 @@
-.custom-file-input::-webkit-file-upload-button {
-    visibility: hidden;
-  }
+@import url("https://fonts.googleapis.com/css?family=Reem+Kufi:regular,500,600,700");
 
-  
+#profileCard h1{
+    font-family: 'Reem Kufi';
+    text-align: center;
+}
