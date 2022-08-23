@@ -16,7 +16,7 @@ function App() {
 
   return (
     <div>
-      Test pistol
+      Hai sa facem bani baiat!
         {users.map( user => <p key={user.email}>{user.name} | {user.email}</p>)}
     </div>
   );
