@@ -33,7 +33,8 @@ export default function Login(props) {
             isLoggedIn: true,
             user: {
               userId: res.data.result.userId, 
-              email:res.data.result.email
+              email:res.data.result.email,
+              avatarUrl: res.data.result.avatarUrl
             },
             socials: [...res.data.result.socials]
         })
