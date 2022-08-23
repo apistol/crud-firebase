@@ -1,4 +1,4 @@
-const { db, storage } = require("../utils/firbase-utils-fn")
+const { db, storage, auth } = require("../utils/firbase-utils-fn")
 
 const path = require("path");
 const os = require("os");
@@ -24,6 +24,7 @@ exports.createUser = async (req, res) => {
 
 exports.addAvatarImage = async (req, res) => {
     const bb = busboy({ headers: req.headers });
+    const userId= req.params.userId
 
     let imageFileName;
     let imageToBeUploaded = {};
@@ -51,7 +52,12 @@ exports.addAvatarImage = async (req, res) => {
                     }
                 })
 
-            imageUrl = `https://firebasestorage.googleapis.com/v0/b/ecommerce-2ebae.appspot.com/o/${imageFileName}?alt=media`;
+            imageUrl = `https://firebasestorage.googleapis.com/v0/b/ecommerce-2ebae.appspot.com/o/${imageFileName}?alt=media`
+
+            await db
+            .doc(`/users/${userId}`)
+            .set({"avatarUrl": imageUrl}, {merge: true});
+
 
             return res.status(200).json({ image: imageUrl })
         })
@@ -67,6 +73,7 @@ exports.addAvatarImage = async (req, res) => {
 exports.login = async (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
+
 
     if (!password) {
         return res.status(300).send("Empty password")
@@ -98,4 +105,35 @@ exports.addSocial = async (req, res) => {
     }
     await db.doc(`/users/${userId}`).set(newUserData)
     res.status(200).send("Succes")
+}
+
+exports.register = async (req, res) => {
+    const {name, email, password} =  req.body
+
+    try{
+
+        const userRecord = await auth.createUser({
+            email,
+            emailVerified: true,
+            password,
+            displayName: name,
+            disabled: false,
+          })
+
+        // Create user
+        await db.collection('users').add({name,email,password, uid: userRecord.uid})
+        
+        // Search for registered user
+        const userFbDoc = await db.collection('users').where("email", "==", email).limit(1).get()
+        
+        // Get user id
+        const userId = userFbDoc.docs[0].id
+
+
+        return res.status(200).send({name,email,userId});
+    }catch(err){
+        console.error(err)
+        return res.status(500).send("Error creating the user");
+    }
+    
 }

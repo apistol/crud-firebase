@@ -22,7 +22,7 @@ export default function Login(props) {
   const [message, setMessage] = useState("")
   const enterPressed = useKeyPressed()
 
-  const [appState, setAppState] = useContext(AppContext)
+  const [ _ , setAppState] = useContext(AppContext)
 
   const navigate = useNavigate()
 
@@ -31,7 +31,10 @@ export default function Login(props) {
     .then((res) => {
         setAppState({
             isLoggedIn: true,
-            user: {userId: res.data.result.userId, email:res.data.result.email},
+            user: {
+              userId: res.data.result.userId, 
+              email:res.data.result.email
+            },
             socials: [...res.data.result.socials]
         })
       setOpen(true)
@@ -64,7 +67,7 @@ export default function Login(props) {
       <Typography textAlign="center" marginBottom="30px" variant="h3" componenet="h3">
       Login
       </Typography>
-      <TextField onChange={(e) => {setEmail(e.target.value)}}id="outlined-basic" label="Username" variant="outlined" value={email}/>
+      <TextField onChange={(e) => {setEmail(e.target.value)}}id="outlined-basic" label="Email" variant="outlined" value={email}/>
       <TextField type="password" onChange={(e) => {setPassword(e.target.value)}}style={{marginTop:25, marginBottom:25}} id="outlined-basic" label="Password" variant="outlined" value={password} />
       <Button onClick={handleChange} style={{width: 100, margin: "auto"}} variant="contained">Login</Button>
     </Paper>

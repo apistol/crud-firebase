@@ -1,11 +1,10 @@
-import './App.css';
 import axios from 'axios';
 import { useState } from 'react';
 import Login from "./components/Login"
 import Dashboard from "./components/Dashboard"
 import Register from "./components/Register"
 import Navbar from './components/Navbar';
-
+import Users from "./components/Users"
 
 import AppContext from "./context/app-context"
 
@@ -33,7 +32,11 @@ function App() {
 
   const [state, setState] = useState({
     isLoggedIn: false,
-    user: {},
+    user: {
+      name:"",
+      email:"",
+      userId:""
+    },
     socials: []
   })
 
@@ -47,6 +50,7 @@ function App() {
             <Route path="/" element={<Dashboard/>}/>
             {!state.isLoggedIn && <Route path="/login" element={<Login/>}/>}
             <Route path="/register" element={<Register/>}/>
+            <Route path="/users" element={<Users/>}/>
           </Routes>
         </BrowserRouter>
       </AppContext.Provider>

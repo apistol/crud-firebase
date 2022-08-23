@@ -1,6 +1,7 @@
 import {useContext} from 'react'
 import SocialModal from "./SocialModal"
 import AppContext from '../context/app-context'
+import ProfileCard from './ProfileCard'
 
 export default function Dashboard() {
 
@@ -8,10 +9,12 @@ export default function Dashboard() {
   return (
     <div style={{display:"flex", justifyContent:"center", alignItems:"center", flexDirection:"column"}}>
         <h2>Socials</h2>
-        {appState.socials.map((e) => {
-          return <a href={e.socialURL.value}>{e.socialName.value}</a>
+        {appState.socials.map((social) => {
+          return <a target="_blank"
+          rel="noopener noreferrer" href={social.socialURL}>{social.socialName}</a>
         })}
         <SocialModal/>
+        <ProfileCard/>
     </div>
   )
 }
