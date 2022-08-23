@@ -30,7 +30,6 @@ export default function Register() {
             email: res.data.email,
             userId: res.data.userId
           }})
-          navigate("/dashboard")
         })
       .catch((err) => {
         console.log(err)

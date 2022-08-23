@@ -121,7 +121,7 @@ exports.register = async (req, res) => {
           })
 
         // Create user
-        await db.collection('users').add({name,email,password, uid: userRecord.uid})
+        await db.collection('users').add({name,email,password, uid: userRecord.uid, socials: []})
         
         // Search for registered user
         const userFbDoc = await db.collection('users').where("email", "==", email).limit(1).get()
@@ -133,7 +133,7 @@ exports.register = async (req, res) => {
         return res.status(200).send({name,email,userId});
     }catch(err){
         console.error(err)
-        return res.status(500).send("Error creating the user");
+        return res.status(200).send(err);
     }
     
 }

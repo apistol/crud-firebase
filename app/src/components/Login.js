@@ -16,8 +16,8 @@ import Snackbar from '@mui/material/Snackbar';
 
 export default function Login(props) {  
     
-  const [email, setEmail] = useState("salut")
-  const [password, setPassword] = useState("vere")
+  const [email, setEmail] = useState("ashu@ashu.ro")
+  const [password, setPassword] = useState("baniterog")
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("")
   const enterPressed = useKeyPressed()
@@ -61,7 +61,7 @@ export default function Login(props) {
   direction="row"
   justifyContent="center"
   alignItems="center"
-  height="100%"
+  height="80%"
 >
   <Grid item xs={4}>
     <Paper elevation={4} style={{display:"flex", flexDirection:"column", justifyContent:"center", padding:"30px"}}>

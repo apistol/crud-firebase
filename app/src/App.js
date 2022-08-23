@@ -47,7 +47,7 @@ function App() {
         <BrowserRouter>
           <Navbar/>
           <Routes>
-            <Route path="/" element={<Dashboard/>}/>
+            <Route path="/dashboard" element={<Dashboard/>}/>
             {!state.isLoggedIn && <Route path="/login" element={<Login/>}/>}
             <Route path="/register" element={<Register/>}/>
             <Route path="/users" element={<Users/>}/>

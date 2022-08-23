@@ -3,6 +3,7 @@ import imgplace from "./300.png"
 import {useState, useEffect, useContext} from "react"
 import axios from 'axios'
 import AppContext from"../context/app-context"
+import "./ProfileCard.css"
 
 export default function ProfileCard() {
 
@@ -37,10 +38,12 @@ export default function ProfileCard() {
         }
     }, [imgfile])
 
-  return (<div>
+  return (<div style={{display: "flex"}}>
     <img onClick={handleClick} style={{borderRadius: 80, width:300, height:300}} src={imgeUrl}/>
-    <br/>
-    <input onChange={(e) => {setImgFile(e.target.files[0])}} type="file"/>
+    <div style={{position:"absolute"}}>
+
+    <input class="custom-file-input" style={{background: "none", height: 300, width: 300}}onChange={(e) => {setImgFile(e.target.files[0])}} type="file"/>
+    </div>
   </div>
   )
 }

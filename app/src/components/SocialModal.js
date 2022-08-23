@@ -77,7 +77,7 @@ export default function BasicModal() {
                     </Box>
 
                     <button onClick={handleClose}>Close</button>
-                    <button onClick={()=> {handlePost()}}>Add</button>
+                    <button onClick={()=> {handlePost(); handleClose()}}>Add</button>
                 </Box>
             </Modal>
         </div>

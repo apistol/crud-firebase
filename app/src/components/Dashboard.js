@@ -8,13 +8,13 @@ export default function Dashboard() {
   const [appState, setAppState] = useContext(AppContext)
   return (
     <div style={{display:"flex", justifyContent:"center", alignItems:"center", flexDirection:"column"}}>
-        <h2>Socials</h2>
         {appState.socials.map((social) => {
           return <a target="_blank"
           rel="noopener noreferrer" href={social.socialURL}>{social.socialName}</a>
         })}
-        <SocialModal/>
         <ProfileCard/>
+        <h2>Socials</h2>
+        <SocialModal/>
     </div>
   )
 }
