@@ -15,3 +15,25 @@ exports.createUser = async (req, res) => {
 
     return res.status(200).send("Success");
 }
+
+
+exports.login = async (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+
+    if (!password) {
+        return res.status(300).send("Empty password")
+    }
+
+    // verifica daca exista userul cu emailul respectiv si parola din db e egala cu ce am trimis
+    const userFBDoc = await db.collection("users").where("email", "==", email).limit(1).get();
+    const userData = userFBDoc.docs[0].data()
+    const userId = userFBDoc.docs[0].id
+
+    if (userData.password !== password) {
+        return res.status(300).send("Wrong password")
+    }
+
+    // returneaza userul plus id-ul userului
+    return res.status(200).json({ result: { ...userData, userId } })
+}
