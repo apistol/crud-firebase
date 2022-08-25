@@ -134,14 +134,26 @@ exports.deleteSocial = async (req, res) => {
     try{
         const userId = req.params.userId;
         const socialsList = req.body;
+
+        console.log(req.body)
         
-        await db.doc(`/users/${userId}`).set({ socials: socialsList }, { merge: true })
+        const userFbData = await db.doc(`/users/${userId}`).get()
+        const userData = await userFbData.data()
+        userData.socials= socialsList
+        await await db.doc(`/users/${userId}`).set(userData)
+
         return res.status(200).send({socials:socialsList});
 
     }catch(err){
         console.error(err)
         return res.status(400).send(err);
     }
+
+    [
+        {
+
+        }
+    ]
 
 
 }
