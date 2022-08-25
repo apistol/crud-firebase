@@ -23,20 +23,24 @@ function App() {
 
   const [state, setState] = useState({
     isLoggedIn: false,
-    user: {},
+    user: {
+      userId:"",
+      email:"",
+      name:""
+    },
     socials: []
   })
 
   return (
     <AppContext.Provider value={[state, setState]}>
-    <BrowserRouter>
-      <Navbar/>
-      <Routes>
-      <Route path="/" element={<Dashboard />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      </Routes>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </BrowserRouter>
     </AppContext.Provider>
   );
 }
