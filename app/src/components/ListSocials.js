@@ -51,7 +51,7 @@ export default function ListSocials() {
                 url: socialUrl
             }))
             .then((res) => {
-
+                    
                 setState({
                     ...state,
                     socials: res.data.socials
