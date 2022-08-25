@@ -1,4 +1,4 @@
-const { db, storage } = require("../utils/firbase-utils-fn")
+const { db, storage, auth } = require("../utils/firbase-utils-fn")
 
 const path = require("path");
 const os = require("os");
@@ -86,6 +86,7 @@ exports.login = async (req, res) => {
 }
 
 exports.addSocial = async (req, res) => {
+    console.log(req.body)
     const userId = req.params.id;
 
     const userFbData = await db.doc(`/users/${userId}`).get()
@@ -93,5 +94,54 @@ exports.addSocial = async (req, res) => {
     let newUserData = userData;
     newUserData.socials.push(req.body)
     await db.doc(`/users/${userId}`).set(newUserData)
-    res.status(200).send("Succes")
+    res.status(200).send({ socials: newUserData.socials })
+}
+
+
+exports.register = async (req, res) => {
+    const { name, email, password } = req.body
+
+    try {
+
+        const userRecord = await auth.createUser({
+            email,
+            emailVerified: true,
+            password,
+            displayName: name,
+            disabled: false,
+        })
+
+        // Create user
+        await db.collection('users').add({ name, email, password, uid: userRecord.uid, socials: [] })
+
+        // Search for registered user
+        const userFbDoc = await db.collection('users').where("email", "==", email).limit(1).get()
+
+        // Get user id
+        const userId = userFbDoc.docs[0].id
+
+
+        return res.status(200).send({ name, email, userId });
+    } catch (err) {
+        console.error(err)
+        return res.status(200).send(err);
+    }
+
+}
+
+
+exports.deleteSocial = async (req, res) => {
+    try{
+        const userId = req.params.userId;
+        const socialsList = req.body;
+        
+        await db.doc(`/users/${userId}`).set({ socials: socialsList }, { merge: true })
+        return res.status(200).send({socials:socialsList});
+
+    }catch(err){
+        console.error(err)
+        return res.status(400).send(err);
+    }
+
+
 }

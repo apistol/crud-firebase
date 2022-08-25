@@ -22,7 +22,7 @@ export default function Navbar() {
     <div className="nav">
       <h1>Link Tree</h1>
       <nav>
-        <Link to="/">Dashboard</Link>
+        <Link to="/dashboard">Dashboard</Link>
         <Link to="/login">Login</Link>
         <Link to="/register">Register</Link>
         <Link to="/profile">Profile</Link>
@@ -34,6 +34,8 @@ export default function Navbar() {
 
       </nav>
 
+
+      <pre>{JSON.stringify(state, 2, 1)}</pre>
 
     </div>
   )

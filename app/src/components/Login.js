@@ -30,7 +30,7 @@ export default function Login() {
     const handleSubmit = () => {
 
         axios
-            .post("/users/login", { email, password })
+            .post("/user/login", { email, password })
             .then((res) => {
                 const {userId, email, socials} = res.data.result
                 setState({
