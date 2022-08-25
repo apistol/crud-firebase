@@ -1,7 +1,22 @@
-const Login = () => {
+import axios from "axios"
+import {useEffect, useState, useContext} from "react"
+
+
+//Mui
+////import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button'
+import Typography from '@mui/material/Typography';
+
+//import Snackbar from '@mui/material/Snackbar';
+
+export default function Login(props0) {
 
     // https://mui.com/material-ui/getting-started/overview/
-
+    const [email, setEmail] = useState("robert@gmail.com")
+    const[password, setPassword] = useState()
 
 // 1 state ul tau
 
@@ -40,7 +55,20 @@ const Login = () => {
     return (
         <div>
 
-        {/* 
+        {
+        <Grid container direction="row" justifyContent="center" alignItems="center" height="80%">
+        <Grid item xs={4}>
+        <Paper>
+        <Typography>Login</Typography>
+        <TextField></TextField>
+        <TextField></TextField>
+        <Button></Button>
+        </Paper>
+        </Grid>
+        </Grid>
+        
+        /*
+         
 
         - O structura de <Grid>, in care copilul ,
         sa aiba latimea de 4 unitati pe desktop si 12 pe mobil
