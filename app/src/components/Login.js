@@ -1,6 +1,6 @@
 import axios from "axios"
-import {useEffect, useState, useContext} from "react"
-import {useNavigate} from "react-router-dom"
+import { useEffect, useState, useContext } from "react"
+import { useNavigate } from "react-router-dom"
 import useKeyPressed from "../hooks/useKeyPressed"
 import AppContext from "../context/app-context"
 
@@ -14,38 +14,38 @@ import Typography from '@mui/material/Typography';
 
 //import Snackbar from '@mui/material/Snackbar';
 
-export default function Login(props) {
+export default function Login() {
 
     // https://mui.com/material-ui/getting-started/overview/
     const [email, setEmail] = useState("robert@gmail.com")
     const [password, setPassword] = useState()
-    const [open, setOpen] = useState(false);
-    const [message, setMessage] = useState("")
-    const enterPressed = useKeyPressed()
-// 1 state ul tau
-    const [ _ , setAppState] = useContext(AppContext) //de ce se foloseste "_"?
+
+    // 1 state ul tau
+    const [state, setState] = useContext(AppContext) //de ce se foloseste "_"?
+
+
     const navigate = useNavigate()
-// 2 functia de handleLogin
+    
+
+    
+    // 2 functia de handleLogin
     const handleChange = () => {
-        axios.post("/user/login",{email, password})
-        .then((res) => {
-            setAppState({
-                isLoggedIn: true,
-                user:{
-                    userId:res.data.result.userId,
-                    email:res.data.result.email,
-                    avatarUrl:res.data.result.avatarUrl
-                },
-                socials: [...res.data.result.socials]
+        axios.post("/login", { email, password })
+            .then((res) => {
+                setState({
+                    isLoggedIn: true,
+                    user: {
+                        userId: res.data.result.userId,
+                        email: res.data.result.email,
+                        avatarUrl: res.data.result.avatarUrl
+                    },
+                    socials: [...res.data.result.socials]
+                })
+                navigate("/") //de ce folosim aici navigate?
             })
-        setOpen(true) //La ce ne ajuta asta?
-        setMessage("Success") 
-        navigate("/") //de ce folosim aici navigate?
-        })
-        .catch((err) =>{
-            setOpen(true)
-            setMessage("Esec")
-        })
+            .catch((err) => {
+                console.log(err)
+            })
     }
     // folosesti axios, pentru a apela endpoint-ul, 
 
@@ -80,20 +80,20 @@ export default function Login(props) {
     return (
         <div>
 
-        {
-        <Grid container direction="row" justifyContent="center" alignItems="center" height="80%">
-        <Grid item xs={4}>
-        <Paper elevation={4} style={{display:"flex", flexDirection:"column", justifyContent:"center", padding:"30px"}} >
-        <Typography textAlign="center" marginBottom="30px" variant="h3" componenet="h3">
-            Login
-        </Typography>
-        <TextField value={email} onChange={(e) => {setEmail(e.target.value)}} id="outlined-basic" label="Email" variant="outlined"/>
-        <TextField value={password} type="password" onChange={(e)=>{setPassword(e.target.value)}} style={{marginTop:25, marginBottom:25}} id="outlined-basic" label="Password" variant="outlined"/> 
-        <Button onClick={handleChange} style={{width: 100, margin: "auto"}} variant="contained">Login</Button>
-        </Paper>
-        </Grid>
-        </Grid>
-        
+            {
+                <Grid container direction="row" justifyContent="center" alignItems="center" height="80%">
+                    <Grid item xs={4}>
+                        <Paper elevation={4} style={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "30px" }} >
+                            <Typography textAlign="center" marginBottom="30px" variant="h3" componenet="h3">
+                                Login
+                            </Typography>
+                            <TextField value={email} onChange={(e) => { setEmail(e.target.value) }} id="outlined-basic" label="Email" variant="outlined" />
+                            <TextField value={password} type="password" onChange={(e) => { setPassword(e.target.value) }} style={{ marginTop: 25, marginBottom: 25 }} id="outlined-basic" label="Password" variant="outlined" />
+                            <Button onClick={handleChange} style={{ width: 100, margin: "auto" }} variant="contained">Login</Button>
+                        </Paper>
+                    </Grid>
+                </Grid>
+
         /*
          
 

@@ -5,26 +5,40 @@ import Navbar from './components/Navbar';
 import Dashboard from "./components/Dashboard"
 import Register from "./components/Register"
 import Home from "./components/Home"
+import Landing from "./components/Landing"
 
 //Route 
-import { BrowserRouter,Routes,Route} from "react-router-dom"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import AppContext from './context/app-context';
+
 function App() {
-  const [state, setState] = useState();
-  //  https://reactrouter.com/docs/en/v6/getting-started/overview
+
+
+  const [state, setState] = useState({
+    isLoggedIn: false,
+    user: {
+      userId: "",
+      email: "",
+      avatarUrl: ""
+    },
+    socials: []
+  });
+
 
   return (
     <div>
-      
-      <BrowserRouter>
-          <Navbar/> 
+      <AppContext.Provider value={[state, setState]}>
+        <BrowserRouter>
+          <Navbar />
           <Routes>
-            <Route path="/dashboard" element={<Dashboard/>}/>
-            {!state.isLoggedIn && <Route path="/login" element={<Login/>}/>}
-             <Route path="/users" element={<Home/>}/>
-            
-            </Routes> 
-         </BrowserRouter>  
-       
+            <Route path="/" element={<Landing />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            {!state?.isLoggedIn && <Route path="/login" element={<Login />} />}
+            <Route path="/register" element={<Register />} />
+            <Route path="/users" element={<Home />} />
+          </Routes>
+        </BrowserRouter>
+      </AppContext.Provider>
     </div>
   );
 }
