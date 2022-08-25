@@ -21,7 +21,7 @@ export default function Login() {
     const [password, setPassword] = useState()
 
     // 1 state ul tau
-    const [state, setState] = useContext(AppContext) //de ce se foloseste "_"?
+     const [state, setState] = useContext(AppContext) //de ce se foloseste "_"?
 
 
     const navigate = useNavigate()
@@ -29,18 +29,18 @@ export default function Login() {
 
     
     // 2 functia de handleLogin
-    const handleChange = () => {
-        axios.post("/login", { email, password })
-            .then((res) => {
-                setState({
-                    isLoggedIn: true,
-                    user: {
-                        userId: res.data.result.userId,
-                        email: res.data.result.email,
-                        avatarUrl: res.data.result.avatarUrl
-                    },
-                    socials: [...res.data.result.socials]
-                })
+    // const handleChange = () => {
+    //     axios.post("/login", { email, password })
+    //         .then((res) => {
+    //              setState({
+    //                  isLoggedIn: true,
+                     user: {
+                         userId: res.data.result.userId,
+                         email: res.data.result.email,
+                         avatarUrl: res.data.result.avatarUrl
+                     },
+                     socials: [...res.data.result.socials]
+                 })
                 navigate("/") //de ce folosim aici navigate?
             })
             .catch((err) => {
