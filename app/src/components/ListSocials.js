@@ -46,10 +46,7 @@ export default function ListSocials() {
 
 
         axios
-            .post(`/delete/social/${state.user.userId}`, ({
-                socialName: socialName,
-                url: socialUrl
-            }))
+            .post(`/delete/social/${state.user.userId}`, newSocials)
             .then((res) => {
                     
                 setState({
