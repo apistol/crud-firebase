@@ -1,4 +1,4 @@
-const { db } = require("../utils/firbase-utils-fn")
+const { db, auth } = require("../utils/firbase-utils-fn")
 
 exports.getUsers = async (req, res) => {
     const usersRefs = await db.collection('users').get()
@@ -65,7 +65,7 @@ exports.register = async (req, res) => {
         return res.status(200).send({name,email,userId});
     }catch(err){
         console.error(err)
-        return res.status(200).send(err);
+        return res.status(400).send(err);
     }
     
 }
