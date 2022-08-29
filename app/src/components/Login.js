@@ -29,11 +29,11 @@ export default function Login() {
 
     
     // 2 functia de handleLogin
-    // const handleChange = () => {
-    //     axios.post("/login", { email, password })
-    //         .then((res) => {
-    //              setState({
-    //                  isLoggedIn: true,
+    const handleChange = () => {
+        axios.post("/login", { email, password })
+            .then((res) => {
+                 setState({
+                     isLoggedIn: true,
                      user: {
                          userId: res.data.result.userId,
                          email: res.data.result.email,

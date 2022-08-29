@@ -10,7 +10,7 @@ import Landing from "./components/Landing"
 //Route 
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import AppContext from './context/app-context';
-
+axios.defaults.baseURL = "http://localhost:5000/ecommerce-2ebae/us-central1/api"
 function App() {
 
 
