@@ -37,3 +37,35 @@ exports.login = async (req, res) => {
     // returneaza userul plus id-ul userului
     return res.status(200).json({ result: { ...userData, userId } })
 }
+
+
+exports.register = async (req, res) => {
+    const {name, email, password} =  req.body
+
+    try{
+
+        const userRecord = await auth.createUser({
+            email,
+            emailVerified: true,
+            password,
+            displayName: name,
+            disabled: false,
+          })
+
+        // Create user
+        await db.collection('users').add({name,email,password, uid: userRecord.uid, socials: []})
+        
+        // Search for registered user
+        const userFbDoc = await db.collection('users').where("email", "==", email).limit(1).get()
+        
+        // Get user id
+        const userId = userFbDoc.docs[0].id
+
+
+        return res.status(200).send({name,email,userId});
+    }catch(err){
+        console.error(err)
+        return res.status(200).send(err);
+    }
+    
+}

@@ -21,7 +21,8 @@ function App() {
       email: "",
       avatarUrl: ""
     },
-    socials: []
+    socials: [],
+    messages:""
   });
 
 
