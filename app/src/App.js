@@ -28,7 +28,7 @@ function App() {
 
   return (
     <div>
-      <AppContext.Provider value={[state, setState]}>
+      <AppContext.Provider value={"Robert"}>
         <BrowserRouter>
           <Navbar />
           <Routes>
