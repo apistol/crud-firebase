@@ -1,25 +1,30 @@
 import logo from './logo.svg';
 import './App.css';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Counter from './Counter';
 
-function App() {
+class App extends React.Component {
 
-  const [users, setUsers] = useState([])
+  constructor() {
+    super()
+    this.state = {
+      show: false
+    }
+  }
 
-  useEffect( () => {
-    axios.get("http://localhost:5000/ecommerce-2ebae/us-central1/api/users").then(res => {
-      setUsers(res.data.result)
-    })
-  }, [])
+  // componentDidMount
+  // componentDidUpdate
+  // componentWillUnmount
 
-
-  return (
-    <div>
-      Test pistol
-        {users.map( user => <p key={user.email}>{user.name} | {user.email}</p>)}
-    </div>
-  );
+  render() {
+    return (
+      <div>
+        {this.state.show && <Counter />}
+        <button onClick={() => this.setState({ show: !this.state.show })}> {this.state.show ? "Hide" : "Show"}</button>
+      </div>
+    );
+  }
 }
 
 export default App;
