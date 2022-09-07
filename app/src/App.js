@@ -21,27 +21,16 @@ axios.defaults.baseURL = "http://localhost:5000/ecommerce-2ebae/us-central1/api"
 
 function App() {
 
-  const [state, setState] = useState({
-    isLoggedIn: false,
-    user: {
-      userId:"",
-      email:"",
-      name:""
-    },
-    socials: []
-  })
-
+ 
   return (
-    <AppContext.Provider value={[state, setState]}>
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+          {/* <Route path="/login" element={<Login />} /> */}
+          {/* <Route path="/register" element={<Register />} /> */}
         </Routes>
       </BrowserRouter>
-    </AppContext.Provider>
   );
 }
 

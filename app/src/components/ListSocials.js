@@ -64,30 +64,7 @@ export default function ListSocials() {
 
 
     }
-    // 3. handleDelete( socialIndex ) function, care primeste ca argument index-ul din lista
-
-    // creezi o lista, const newSocials = , care va fi egal cu state.socials.filter((s, index)= > {return socialIndex !== index})
-
-
-    // endpoint "/delete/social/:userId" 
-    // metoda request-ului : POST
-    // payload : [{
-    // socialName:"",
-    // url:""
-    // }]
-
-    // raspus de la be : 
-    // [{
-    // socialName:"",
-    // url:" 
-    // }]
-
-    // pe then, actualizez contextul ul pentru social
-
-
-
-    // pe catch, doar pui o alerta
-
+    
 
     return (
         <div>

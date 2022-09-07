@@ -1,19 +1,21 @@
 import { Link } from "react-router-dom"
 import AppContext from "./context/app-context"
-import { useContext } from "react"
 import Avatar from '@mui/material/Avatar';
-
+import store from "../redux"
 
 export default function Navbar() {
-  const [state, setState] = useContext(AppContext)
+
   const handleLogout = () => {
-    setState({
-      isLoggedIn: false,
-      user: {
-        email: "",
-        name: ""
-      },
-      socials: []
+    store.dispatch({
+      type:"LOGOUT",
+      payload:{
+        isLoggedIn: false,
+        user: {
+          email: "",
+          name: ""
+        },
+        socials: []
+      }
     })
   }
 
@@ -35,7 +37,7 @@ export default function Navbar() {
       </nav>
 
 
-      <pre>{JSON.stringify(state, 2, 1)}</pre>
+      <pre>{JSON.stringify(store.getState(), 2, 1)}</pre>
 
     </div>
   )
