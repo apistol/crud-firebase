@@ -1,4 +1,4 @@
-import {useState, useEffect , useContext} from 'react'
+import { useState, useEffect, useContext } from 'react'
 
 import axios from "axios"
 // import ImageUploading from "react-images-uploading";
@@ -12,9 +12,8 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Snackbar from '@mui/material/Snackbar';
-import {useKeyPress} from "../hooks/useKeyPress"
-
-import AppContext from "../context/app-context"
+import { useKeyPress } from "../hooks/useKeyPress"
+import store from '../redux';
 
 export default function Login() {
 
@@ -24,65 +23,48 @@ export default function Login() {
     const [open, setOpen] = useState(false);
     const [message, setMessage] = useState("")
     const enterPressed = useKeyPress()
-    
-    const [state, setState] = useContext(AppContext)
-    
+
+
     const navigate = useNavigate()
-    
+
     const handleSubmit = () => {
-      axios
-        .post("/user/login", { email, password })
-        .then((res) => {
-            setState({
-                isLoggedIn: true,
-                user: { 
-                    userId : res.data.result.userId,
-                    email : res.data.result.email
-                },
-                socials: [...res.data.result.socials]
+        axios
+            .post("/user/login", { email, password })
+            .then((res) => {
+                debugger
+                store.dispatch({
+                    type: "LOG_IN",
+                    payload: {
+                        isLoggedIn: true,
+                        user: {
+                            userId: res.data.result.userId,
+                            email: res.data.result.email
+                        },
+                        socials: [...res.data.result.socials]
+                    }
+                })
+                setOpen(true)
+                setMessage("Succes")
+                // navigate("/")
             })
-          setOpen(true)
-          setMessage("Succes")
-          navigate("/")
-        })
-        .catch((err) => {
-          console.error(err)
-          setOpen(true)
-          setMessage("Esec")
-        })
-  
+            .catch((err) => {
+                console.error(err)
+                setOpen(true)
+                setMessage("Esec")
+            })
+
     }
 
 
-    // const [images, setImages] = useState([]);
-  
-    // const onImageChange = (imageList, addUpdateIndex) => {
-    //   // data for submit
-    //   console.log(imageList, addUpdateIndex);
-    //   setImages(imageList);
-    // };
-  
-    // const handleUploadAvatar = () => {
-  
-    //   const fd = new FormData();
-    //   fd.append('image', images[0].file, images[0].file.name);
-    //   axios.defaults.headers.common['Content-Type'] = 'multipart/form-data';
-  
-    //   axios.post("/user/avatar", fd).then(res => {
-    //     console.log(res.data)
-    //   }
-    //   ).catch(err => {
-    //     alert("esec")
-    //   })
-    // }
-
     useEffect(() => {
-        if(enterPressed) handleSubmit()
+        if (enterPressed) handleSubmit()
     }, [enterPressed])
 
+    const state = store.getState()
 
     return (
         <div style={{ height: "100vh" }}>
+            <pre>{JSON.stringify(state.user.email,1,1)}</pre>
             <Grid
                 container
                 direction="row"
@@ -101,48 +83,6 @@ export default function Login() {
                         <br />
                         <Button onClick={handleSubmit} style={{ width: "200px", margin: "auto" }} variant="contained">Login</Button>
 
-                        {/* <ImageUploading
-                            value={images}
-                            onChange={onImageChange}
-                            maxNumber={1}
-                            dataURLKey="data_url"
-                            acceptType={["jpg"]}
-                        >
-                            {({
-                                imageList,
-                                onImageUpload,
-                                onImageRemoveAll,
-                                onImageUpdate,
-                                onImageRemove,
-                                isDragging,
-                                dragProps
-                            }) => (
-                                // write your building UI
-                                <div className="upload__image-wrapper">
-                                    <button
-                                        style={isDragging ? { color: "red" } : null}
-                                        onClick={onImageUpload}
-                                        {...dragProps}
-                                    >
-                                        Click or Drop here
-                                    </button>
-                                    &nbsp;
-                                    <button onClick={onImageRemoveAll}>Remove all images</button>
-                                    {imageList.map((image, index) => (
-                                        <div key={index} className="image-item">
-                                            <img src={image.data_url} alt="" width="100" />
-                                            <div className="image-item__btn-wrapper">
-                                                <button onClick={() => onImageUpdate(index)}>Update</button>
-                                                <button onClick={() => onImageRemove(index)}>Remove</button>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-                        </ImageUploading>
-
-                        <br />
-                        <Button onClick={handleUploadAvatar} style={{ width: "200px", margin: "auto" }} variant="contained">Upload image</Button> */}
                     </Paper>
                 </Grid>
             </Grid>

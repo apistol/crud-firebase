@@ -14,30 +14,18 @@ import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
 import Register from "./components/Register";
 
-import AppContext from "./context/app-context"
 import Profile from "./components/Profile";
 
 axios.defaults.baseURL = "http://localhost:5000/ecommerce-2ebae/us-central1/api"
 
 function App() {
 
-  const [state, setState] = useState({
-    isLoggedIn: false,
-    user: {
-      name:"",
-      email:""
-    },
-    socials: [],
-    openDialog:false
-  })
-
 
 
   return (
 
-    <AppContext.Provider value={[state, setState]}>
       <BrowserRouter>
-        <Navbar />
+        {/* <Navbar /> */}
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />
@@ -46,7 +34,6 @@ function App() {
 
         </Routes>
       </BrowserRouter>
-    </AppContext.Provider>
   );
 }
 
